@@ -161,6 +161,7 @@ function markSearchedInput(originStr, SearchedInput) {
         if (originStr.substr(count, SearchedInput.length).toLowerCase() == SearchedInput.toLowerCase()) {
 
             arrIndex.push(count);
+            console.log(`count${count},${}`)
             isSearchInExist = true;
         }
     }
@@ -176,7 +177,7 @@ function insertMarkToExistSearchInput(arr, originStr, searchedInput) {
     parseStrToArr = originStr.split((""));
     for (var count = 0; count < arr.length; count++) {
         parseStrToArr.splice(count, 0, "<mark>");
-        parseStrToArr.splice(count + searchedInput.length + (count * 13) + 1, 0, "</mark>");
+        parseStrToArr.splice(count + searchedInput.length + (count * 13), 0, "</mark>");
 
     }
     return parseArrToStr(parseStrToArr);
