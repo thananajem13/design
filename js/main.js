@@ -1,6 +1,11 @@
 var str = '';
 var tbody = document.getElementById("tbody");
 var productsList = [];
+if (localStorage.getItem("allProducts") == null) {
+    var productsList = [];
+} else {
+    var productsList = JSON.parse(localStorage.getItem("allProducts"));
+}
 var productIndex = -1;
 var productName = document.getElementById("ProductName");
 var productCategory = document.getElementById("ProductCategory");
@@ -26,12 +31,14 @@ function addProduct() {
         };
 
         productsList.push(singleProduct);
+        console.log(productsList)
+        localStorage.setItem("allProducts", JSON.stringify(productsList));
         clearForm();
         displayProducts();
         alert("data inserted successfully")
     }
 }
-displayProducts();
+// displayProducts();
 
 function clearForm() {
     productName.value = '';
@@ -49,9 +56,13 @@ function validation(productNameVal, productCategoryVal, productDescriptionVal, p
     }
     return true;
 }
+displayProducts()
+
 
 function displayProducts() {
     str = '';
+    // var productsList = JSON.parse(localStorage.getItem("allProducts"));
+
     if (productsList.length != 0) {
         for (var count = 0; count < productsList.length; count++) {
             str += `<tr>
@@ -66,7 +77,7 @@ function displayProducts() {
 </button>
     </td>
     <td>
-        <button class="btn btn-outline-danger" onclick=" deleteProduct(${productsList[count].pIndex})" > <i class = "fa-solid fa-trash" ></i> </button > </td> < /tr > `;
+        <button class="btn btn-outline-danger" onclick=" deleteProduct(${productsList[count].pIndex})" > <i class = "fa-solid fa-trash" ></i> </button > </td> </tr> `;
         }
     } else {
         str = ` <tr>
@@ -79,6 +90,7 @@ function displayProducts() {
 function deleteProduct(Index) {
     alert("deleted!");
     productsList.splice(Index, 1);
+    var productsList = JSON.parse(localStorage.setItem("allProducts", JSON.stringify((productsList))));
     displayProducts();
 }
 
