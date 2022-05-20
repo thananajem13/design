@@ -7,6 +7,11 @@ if (localStorage.getItem("allProducts") == null) {
     var productsList = JSON.parse(localStorage.getItem("allProducts"));
 }
 var productIndex = -1;
+if (localStorage.getItem("productIndex") == null) {
+    var productIndex = -1;
+} else {
+    var productIndex = localStorage.setItem("productIndex", productIndex);
+}
 var productName = document.getElementById("ProductName");
 var productCategory = document.getElementById("ProductCategory");
 var productPrice = document.getElementById("ProductPrice");
@@ -58,6 +63,9 @@ function validation(productNameVal, productCategoryVal, productDescriptionVal, p
 }
 displayProducts()
 
+function validate() {
+    var regName = \ ^ [a - z A - Z]([0 - 9] ? )\
+}
 
 function displayProducts() {
     str = '';
@@ -104,11 +112,15 @@ var updateIndex = -1;
 
 function updateProducts(index) {
     updateIndex = index;
-    productCategory.value =
-        productsList[index].pCategory;
+    alert(`updateIndex: ${updateIndex}`);
+    productCategory.value = productsList[index].pCategory;
     productDescription.value = productsList[index].pDesc;
     productName.value = productsList[index].pname;
     productPrice.value = productsList[index].pPrice;
+    console.log(productsList[index].pCategory);
+    console.log(productsList[index].pDesc);
+    console.log(productsList[index].pname);
+    console.log(productsList[index].pPrice);
     document.getElementById("add").style.display = "none";
     document.getElementById("update").style.setProperty("display", "inline-block", "important");;
 
@@ -124,9 +136,10 @@ function updateProduct() {
 
         productsList[updateIndex].pname = productNameVal;
         productsList[updateIndex].pCategory = productCategoryVal;
-        productsList[updateIndex].pdesc = productDescriptionVal;
+        productsList[updateIndex].pDesc = productDescriptionVal;
         productsList[updateIndex].pPrice = productPriceVal;
         alert("data updated successfully");
+        alert(productsList[updateIndex].pname)
         clearForm();
     } else { alert("please fill filed"); }
     displayProducts();
@@ -169,7 +182,7 @@ function markSearchedInput(originStr, SearchedInput) {
     var arrIndex = [];
     var isSearchInExist = false;
 
-    for (var count = 0; count < originStr.length - SearchedInput.length; count++) {
+    for (var count = 0; count <= originStr.length - SearchedInput.length; count++) {
         if (originStr.substr(count, SearchedInput.length).toLowerCase() == SearchedInput.toLowerCase()) {
             arrIndex.push(count);
             console.log(`count: ${count}`)
@@ -187,8 +200,8 @@ function insertMarkToExistSearchInput(arr, originStr, searchedInput) {
     var parseStrToArr = [];
     parseStrToArr = originStr.split((""));
     for (var count = 0; count < arr.length; count++) {
-        parseStrToArr.splice(count, 0, "<mark>");
-        parseStrToArr.splice(count + searchedInput.length + (count * 13 + 6), 0, "</mark>");
+        parseStrToArr.splice(13 * count + count, 0, "<mark>");
+        parseStrToArr.splice(count + searchedInput.length + (count * 13) + 6, 0, "</mark>");
 
     }
     return parseArrToStr(parseStrToArr);
