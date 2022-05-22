@@ -23,7 +23,7 @@
         <input class="form-control" id="ProductCategory" onblur="validateproductName('categoryName')" onkeyup="validateproductName('categoryName')">
         <div id="category-err"></div>
         <label>ProductPrice:</label>
-        <input type="number" class="form-control" id="ProductPrice">
+        <input type="number" class="form-control" id="ProductPrice" onblur="validatePrice()" onkeyup="validatePrice()">
         <div id="price-err"></div>
         <label>ProductDescription:</label>
         <textarea class="form-control" id="ProductDescription"></textarea>
