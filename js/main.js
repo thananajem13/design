@@ -134,7 +134,7 @@ document.getElementById("price-err").style.color="red";
 
     function deleteProduct(Index) { 
        
-        console.log(productsList)  
+        console.log(productsList[0])  
         var isDeleted = productsList.splice(Index, 1);
         console.log(isDeleted)
         if(isDeleted.length!=0){alert("deleted!");}
