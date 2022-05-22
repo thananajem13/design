@@ -24,7 +24,7 @@ function addProduct() {
     var productCategoryVal = productCategory.value;
     var productPriceVal = productPrice.value;
     var productDescriptionVal = productDescription.value;
-    if (validation(productNameVal, productCategoryVal, productDescriptionVal, productPriceVal)) {
+    if (validateproductName() &&validation(productNameVal, productCategoryVal, productDescriptionVal, productPriceVal)) {
 
         productIndex++;
         var singleProduct = {
@@ -63,8 +63,16 @@ function validation(productNameVal, productCategoryVal, productDescriptionVal, p
 }
 displayProducts()
 
-function validate() {
-    var regName = \ ^ [a - z A - Z]([0 - 9] ? )\
+function validateproductName(type) {
+    if(type.)
+    var productNameVal = productName.value;
+    var regName = /^[a-z A-Z]{3,10}([0-9]*)$/;
+    if(!regName.test(productNameVal)){
+document.getElementById("name-err").innerHTML = "please start product name with letters" ;
+document.getElementById("name-err").style.color = "red";
+    }
+    else{document.getElementById("name-err").innerHTML = "" ;}
+   return regName.test(productNameVal);
 }
 
 function displayProducts() {
