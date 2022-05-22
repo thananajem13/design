@@ -31,6 +31,7 @@ function addProduct() {
     if (validateproductName("categoryName") && validateproductName("productName") && validatePrice() && validation(productNameVal, productCategoryVal, productDescriptionVal, productPriceVal)) {
 
         productIndex=productsList.length;
+        console.log(`productIndex: ${productIndex}`)
         var singleProduct = {
             'pIndex': productIndex,
             'pname': productNameVal,
