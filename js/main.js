@@ -20,13 +20,17 @@ var productDescription = document.getElementById("ProductDescription");
 
 
 function addProduct() {
+    // for(var count =0 ; count<productsList.length;count++){
+    //     console.log(productsList[count].pIndex)
+    //     productsList[count].pIndex=count;
+    // }
     var productNameVal = productName.value;
     var productCategoryVal = productCategory.value;
     var productPriceVal = productPrice.value;
     var productDescriptionVal = productDescription.value;
     if (validateproductName("categoryName") && validateproductName("productName") && validatePrice() && validation(productNameVal, productCategoryVal, productDescriptionVal, productPriceVal)) {
 
-        productIndex++;
+        productIndex=productsList.length;
         var singleProduct = {
             'pIndex': productIndex,
             'pname': productNameVal,
@@ -133,16 +137,20 @@ document.getElementById("price-err").style.color="red";
     }
 
     function deleteProduct(Index) { 
-       
-        console.log(productsList[0])  
+        console.log(productsList)
+        
+        // for(var count =0 ; count<productsList.length;count++){
+        //     console.log(productsList[count].pIndex)
+        //     productsList[count].pIndex=count;
+        // }  
+        console.log(productsList)
         var isDeleted = productsList.splice(Index, 1);
-        console.log(isDeleted)
         if(isDeleted.length!=0){alert("deleted!");}
         else{alert("An error occured");} 
         localStorage.setItem("allProducts", JSON.stringify((productsList)));         
         displayProducts();
     } 
-
+     
     function addNewProduct() {
 
         document.getElementById("add").style.display = "block";
